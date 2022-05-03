@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const coins = [5, 7, 1, 1, 2, 3, 22];
+
+  const changeHandler = (change) => {
+    const sortedChange = change.sort((a, b) => {
+      return a - b;
+    });
+    let aux = 0;
+    let counter = 0;
+    sortedChange.map((coin) => {
+      debugger;
+      if (aux > 0 && aux !== counter + 1) {
+        if (!coins.find((value) => value + aux === counter + 1)) {
+          return aux;
+        } else {
+          counter++;
+          aux += coin;
+        }
+      } else {
+        counter++;
+        aux += coin;
+      }
+    });
+  };
+  changeHandler(coins);
+  return <div className="App"></div>;
 }
 
 export default App;
